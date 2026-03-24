@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>iRacing 2026 S2 Schedule Viewer</title>
+  <meta name="description" content="iRacing 2026 Season 2 の開催情報を Week / Category / License で絞り込めるビューアー" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">GitHub Pagesでそのまま公開できる静的サイト</p>
+        <h1>iRacing 2026 Season 2<br>Schedule Viewer</h1>
+        <p class="hero-copy">
+          Week / Category / License Class で今シーズンの開催情報を絞り込み。
+          データは公式の SeasonSchedule PDF をもとに整理しています。
+        </p>
+      </div>
+      <div class="hero-meta card">
+        <div class="meta-row">
+          <span class="meta-label">Season</span>
+          <strong id="seasonName">2026 Season 2</strong>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Series</span>
+          <strong id="seriesCount">-</strong>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Entries</span>
+          <strong id="entryCount">-</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="filters card">
+      <div class="filter-grid">
+        <label class="field">
+          <span>Week</span>
+          <select id="weekFilter"></select>
+        </label>
+
+        <label class="field">
+          <span>Category</span>
+          <select id="categoryFilter">
+            <option value="All">All</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>License</span>
+          <select id="licenseFilter">
+            <option value="All">All</option>
+          </select>
+        </label>
+
+        <label class="field field-search">
+          <span>Search</span>
+          <input id="searchInput" type="text" placeholder="シリーズ名 or コース名" />
+        </label>
+      </div>
+
+      <div class="filter-actions">
+        <button id="resetBtn" class="button secondary" type="button">リセット</button>
+        <div id="resultMeta" class="result-meta">-</div>
+      </div>
+    </section>
+
+    <section class="legend">
+      <span class="badge neutral">標準12週以外のシリーズも含む</span>
+      <span class="badge neutral">All を選ぶと全カテゴリ横断で表示</span>
+      <span class="badge neutral">シリーズ名をタップしやすい大きさで表示</span>
+    </section>
+
+    <section id="cards" class="cards" aria-live="polite"></section>
+
+    <template id="cardTemplate">
+      <article class="schedule-card card">
+        <div class="card-top">
+          <div>
+            <h2 class="series-name"></h2>
+            <p class="series-subtitle"></p>
+          </div>
+          <div class="badge-stack">
+            <span class="badge category-badge"></span>
+            <span class="badge license-badge"></span>
+          </div>
+        </div>
+        <div class="info-grid">
+          <div>
+            <div class="label">Week</div>
+            <div class="value week-value"></div>
+          </div>
+          <div>
+            <div class="label">Start</div>
+            <div class="value date-value"></div>
+          </div>
+          <div class="track-block">
+            <div class="label">Track</div>
+            <div class="value track-value"></div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <footer class="footer">
+      <p>Source: official iRacing 2026 Season 2 SeasonSchedule PDF / generated for static viewing.</p>
+    </footer>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
